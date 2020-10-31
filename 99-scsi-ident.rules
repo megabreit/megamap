@@ -1,0 +1,10 @@
+# rules for RAID controller disc (SLES compatible)
+#BEGIN
+ACTION!="add|change", GOTO="rule_end"
+
+KERNEL=="sd*[!0-9]", ENV{ID_SCSI}=="1", IMPORT{program}="/usr/bin/sg_inq --export --page=di $tempnode"
+ENV{SCSI_IDENT_LUN_VENDOR}=="?*", ENV{SCSI_IDENT_LUN_VENDOR}="0x$env{SCSI_IDENT_LUN_VENDOR}"
+ENV{SCSI_IDENT_LUN_T10}=="?*", ENV{SCSI_IDENT_LUN_T10}="0x$env{SCSI_IDENT_LUN_T10}"
+ENV{SCSI_IDENT_LUN_NAA}=="?*", ENV{SCSI_IDENT_LUN_NAA}="0x$env{SCSI_IDENT_LUN_NAA}"
+LABEL="rule_end"
+#END
