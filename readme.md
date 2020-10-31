@@ -1,5 +1,6 @@
 # Megamap.pl will display disk slot to device name mappings with MegaRAID adapters
 
+The purpose of this script is to create a mapping between device names and adapter slots. Device names change sometimes, e.g. when a disk is removed incorrectly from the system. With this script one can make always sure to work with a specific disk, regardless of the device name.
 This was tested with SLES 12 and RHEL7 with Cisco MegaRAID 12G = LSI MegaRAID SAS 3108, other adapters might also work.
 You need root permissions to run this script!
 
@@ -11,7 +12,7 @@ You need root permissions to run this script!
 
 Redhat promised to add those udev rule to RHEL 8.x, this still needs to be verified.
 
-The script is work in progress... feel free to contact the author if you notices problems, bugs etc. or want to contribute.
+The script is work in progress... feel free to contact the author or create issues if you notices problems, bugs etc. or want to contribute.
 
 ```
 Usage: megamap.pl [-h] [-V] [-l | -d | -s] [device, location or slot name}
@@ -118,7 +119,7 @@ RAID members have a slot but no device
 /c0/e8/s8     -    RAID-Member Onln  No    /c0/v0    -
 ```
 #### Show all slot numbers for all disks connected to the raid controller
-Virtual controllers have a device but not slot
+Virtual controllers have a device but no slot
 ```
 #megamap.pl -s
 #Slot No. Location      Dev  Type        State Smart RAID      Device-by-path
@@ -143,7 +144,7 @@ s8    8   /c0/e8/s8     -    RAID-Member Onln  No    /c0/v0    -
 | ---      |  ------  |
 | Dev | disk device name, e.g. sda, sdb|
 | Location | location description from the MegaRaid adapter, e.g /c0/e1/s1 for physical disks or /c0/v0 for virtual arrays|
-| Slot | location with the controller and enclosure part stripped. Only physical disks (JBOD) hava a slot!|
+| Slot | location with the controller and enclosure part stripped. Only physical disks (JBOD or RAID member) hava a slot!|
 | No. | slot number without the "s", for convenience only|
 | Type | disk type of this device, e.g RAIS015, RAID-Member, JBOD|
 | State | device state, e.g. Optl (Optimal), Onln (Online), see storcli for detail|
