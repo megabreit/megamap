@@ -146,7 +146,7 @@ s8    8   /c0/e8/s8     -    RAID-Member Onln  No    /c0/v0    -
 | Location | location description from the MegaRaid adapter, e.g /c0/e1/s1 for physical disks or /c0/v0 for virtual arrays|
 | Slot | location with the controller and enclosure part stripped. Only physical disks (JBOD or RAID member) hava a slot!|
 | No. | slot number without the "s", for convenience only|
-| Type | disk type of this device, e.g RAIS015, RAID-Member, JBOD|
+| Type | disk type of this device, e.g RAID015, RAID-Member, JBOD|
 | State | device state, e.g. Optl (Optimal), Onln (Online), see storcli for detail|
 | Smart | Smart check of this device shows isues, only for JBODs|
 | RAID | location name of virtual array|
